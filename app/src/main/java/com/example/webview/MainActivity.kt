@@ -27,18 +27,22 @@ class MainActivity : AppCompatActivity() {
             it.ok.setOnClickListener(clickOk2)
         }
     }
+
     //----------------------------------------------------------------------------------------------// 1)  binding.webview.loadData() не работате, должна открывать WebView
     // --------------- 2 СПОСОБ ----------------------------                                        // 2)  binding.webview.loadDataWithBaseURL аналог первого, работает
     @SuppressLint("SetJavaScriptEnabled")                                                    // 3)  binding.webview.loadUrl(urlText) открывает ссылку в Chrome, а не WebView
     private val clickOk2 = View.OnClickListener {
-        Toast.makeText(this, "STAR 2", Toast.LENGTH_SHORT).show()                       // runOnUiThread {} - выполняет в главно потоке, в данном примере аналог Handler(Looper.getMainLooper()).post { }
-        val urlText = binding.etTextUrl.text.toString()                                             //  в данном примере аналог Handler(Looper.getMainLooper()).post { }
+        Toast.makeText(this, "STAR 2", Toast.LENGTH_SHORT)
+            .show()                       // runOnUiThread {} - выполняет в главно потоке, в данном примере аналог Handler(Looper.getMainLooper()).post { }
+        val urlText =
+            binding.etTextUrl.text.toString()                                             //  в данном примере аналог Handler(Looper.getMainLooper()).post { }
         Thread {
             runOnUiThread { binding.webview.loadUrl(urlText) }
         }.start()
         Toast.makeText(this, "END 2", Toast.LENGTH_SHORT).show()
     }
-//----------------------------------------------------------------------------------------------
+
+    //----------------------------------------------------------------------------------------------
     // --------------- 1 СПОСОБ ----------------------------
     @SuppressLint("SetJavaScriptEnabled")
     private val clickOk1 = View.OnClickListener {
@@ -66,13 +70,12 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         }.start()
-
-
+        urlConnection.disconnect()
         Toast.makeText(this, "END 1", Toast.LENGTH_SHORT).show()
     }
 
     private fun getLinesAsOneBigString(bufferedReader: BufferedReader): String {
-        return bufferedReader.lines().collect(Collectors.joining("\n"));
+        return bufferedReader.lines().collect(Collectors.joining("\n"))
     }
 }
 
