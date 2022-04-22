@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).also {
             setContentView(it.root)
-            //it.ok.setOnClickListener(clickOk1)
-            it.ok.setOnClickListener(clickOk2)
+            it.ok.setOnClickListener(clickOk1)
+            //it.ok.setOnClickListener(clickOk2)
         }
     }
 
